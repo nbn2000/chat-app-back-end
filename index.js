@@ -2,12 +2,15 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 require("dotenv").config();
-const router = require("./src/Router");
+const router = require("./Router");
 const port = process.env.PORT || 8080;
-const auth = require("./src/Middleware/Auth");
-const user = require("./src/Controller/user");
+const auth = require("./Middleware/Auth");
+const user = require("./Controller/user");
 app.use(express.json());
 app.use(cors());
+app.get("/", async (req, res) => {
+  res.send("Wrong website please check again");
+});
 app.use(auth);
 app.use(user.lastActive);
 app.use(router);
